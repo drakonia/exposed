@@ -1,0 +1,33 @@
+env:
+  browser: true
+  shared-node-browser: true
+extends: 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 2016
+rules:
+  indent:
+    - error
+    - 2
+    - SwitchCase: 1
+  linebreak-style:
+    - error
+    - unix
+  max-len:
+    - error
+    - code: 80
+    - ignoreTrailingComments: true
+    - ignoreUrls: true
+  no-console:
+    - warn
+    - allow:
+      - group
+      - groupCollapsed
+      - groupEnd
+      - error
+      - warn
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
