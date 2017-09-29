@@ -1,0 +1,1 @@
+{"version":3,"sources":["_main.js"],"names":["thingy","console","log"],"mappings":";;AAAA,IAAIA,SAAS,SAATA,MAAS,GAAM;AACjB,SAAO,SAAP;AACD,CAFD;AAGAC,QAAQC,GAAR,CAAYF,QAAZ;AACA","file":"main.js","sourcesContent":["let thingy = () => {\n  return 'heyaaaa';\n};\nconsole.log(thingy());\n// thingy();\n"]}

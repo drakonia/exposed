@@ -3,4 +3,7 @@ venv
 staticfiles
 .env
 node_modules
-**/static/dist
+
+# @TODO this should be ignored but since we don't have anything building stuff
+# in between local and Heroku we gotta track static assets
+# **/static/dist
