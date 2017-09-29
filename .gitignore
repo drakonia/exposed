@@ -3,6 +3,7 @@ venv
 staticfiles
 .env
 node_modules
+db.sqlite3
 
 # @TODO this should be ignored but since we don't have anything building stuff
 # in between local and Heroku we gotta track static assets
