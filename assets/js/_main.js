@@ -1,4 +1,5 @@
 let thingy = () => {
-  'hello';
+  return 'heyaaaa';
 };
 console.log(thingy());
+// thingy();
