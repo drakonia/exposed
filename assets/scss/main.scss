@@ -1,0 +1,152 @@
+/* stylelint-disable selector-max-type */
+
+@import 'normalize';
+
+
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+
+
+html {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #cccccc;
+  color: #000000;
+  padding: 0.2em 0;
+}
+
+body {
+  background-color: hsl(33, 16%, 11%);
+  color: hsl(0, 100%, 50%);
+  font-family: 'Source Code Pro', monospace;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 5%;
+}
+
+
+
+
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  a {
+    background: #e44d26;
+    color: #ffffff;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:visited {
+      color: #ffffff;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+  padding: 30px 0;
+
+  article h1 {
+    font-size: 2em;
+  }
+
+  aside {
+    color: #ffffff;
+    padding: 0 5% 10px;
+  }
+}
+
+.footer-container footer {
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+
+
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.explainer h1 {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+
+@media only screen and (min-width: 641px) {
+  .explainer h1 {
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+}
+
+
+@media only screen and (min-width: 1140px) {
+  .wrapper {
+    width: 1026px; /* 1140px - 10% for margins */
+    margin: 0 auto;
+  }
+}
