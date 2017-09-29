@@ -13,7 +13,7 @@ const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const pump = require('pump');
-const dist = './drakonia_exposed/static/dist';
+const dist = './drakonia_exposed/static';
 
 const config = {
   jsDest: dist + '/js',
