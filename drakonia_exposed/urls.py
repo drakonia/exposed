@@ -16,10 +16,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-
 from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, name='index')
 ]
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
+
+"""
+#this will most likely be necessary for locally loading media
+if settings.DEBUG is True:
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+"""
