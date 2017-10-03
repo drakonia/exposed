@@ -1,23 +1,31 @@
 /* eslint-env node */
 
 const gulp = require('gulp');
-const del = require('del');
 const sass = require('gulp-sass');
 const stylelint = require('gulp-stylelint');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const pxtorem = require('postcss-pxtorem');
 const eslint = require('gulp-eslint');
 const browser = require('browser-sync').create();
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const pump = require('pump');
 const dist = './drakonia_exposed/static';
 
 const config = {
   jsDest: dist + '/js',
   jsFiles: 'assets/js/**/*.js',
+  postcss: [
+    autoprefixer({
+      browsers: 'last 2 versions'
+    }),
+    pxtorem({
+      propList: ['*']
+    })
+  ],
   sassDest: dist + '/css',
   sassFiles: './assets/scss/**/*.scss',
   sassOptions: {
@@ -41,7 +49,7 @@ gulp.task('sass', () => {
     .pipe(sourcemaps.init())
     .pipe(sass(config.sassOptions).on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(autoprefixer())
+    .pipe(postcss(config.postcss))
     .pipe(gulp.dest(config.sassDest))
     .pipe(browser.reload({stream: true}));
 });
