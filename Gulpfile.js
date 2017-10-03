@@ -35,13 +35,7 @@ gulp.task('browser-sync', ['sass'], () => {
   });
 });
 
-gulp.task('dist-clean', () => {
-  return del([dist]).then(paths => {
-    console.log('Deleted files and folders:\n', paths.join('\n'));
-  });
-});
-
-gulp.task('sass', ['dist-clean'], () => {
+gulp.task('sass', () => {
   return gulp
     .src(config.sassFiles)
     .pipe(sourcemaps.init())
@@ -84,7 +78,7 @@ gulp.task('js-lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('js-concat', ['dist-clean'], () => {
+gulp.task('js-concat', () => {
   return gulp.src(config.jsFiles)
     .pipe(sourcemaps.init())
     .pipe(babel())
@@ -108,12 +102,11 @@ gulp.task('watch', ['browser-sync', 'js-concat', 'sass'], () => {
 });
 
 gulp.task('dev', [
-  'dist-clean', 'js-lint-nice', 'js-concat', 'sass', 'sass-lint'
+  'js-lint-nice', 'js-concat', 'sass', 'sass-lint'
 ]);
 
 // @TODO `js-compress` isn't working
 gulp.task('prod', [
-  'dist-clean',
   'js-lint', 'js-concat', 'js-compress',
   'sass', 'sass-lint', 'css-minify'
 ]);
