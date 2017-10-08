@@ -3,6 +3,37 @@
 // ==========================================================================
 
 
+/// Generate heading font size styles including size reduction
+///
+/// Couples Foundation's `$h*-font-size` and `$h*-font-reduction` variables.
+///
+/// @access public
+/// @param {number} $h-level - Heading level number
+/// @param {bool}   $do-reduction [true] - Include reduction sizing?
+@mixin h-size( $h-level, $do-reduction: true ) {
+  @if not is-number( $h-level ) {
+    @error 'Parameter `$h-level` with value `#{$h-level}` is not a number!';
+  }
+
+  $h-level-cl: clamp($h-level, 1, 6);
+  @if $h-level-cl != $h-level {
+    @error 'Parameter `$h-level` with value `#{$h-level}` is not a valid heading level!';
+  }
+
+  $base-size: map-fetch($h-sizes, $h-level);
+  $size: $base-size;
+  @if $do-reduction {
+    $size: $size - map-fetch($h-size-reduction, $h-level);
+  }
+
+  font-size: $size;
+
+  @include media-breakpoint-up(md) {
+    font-size: $base-size;
+  }
+}
+
+
 //
 // Grid
 // ==========================================================================

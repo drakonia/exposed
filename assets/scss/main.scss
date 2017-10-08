@@ -9,46 +9,13 @@
 
 
 // ==========================================================================
-// Settings
-// ==========================================================================
-
-
-$grid-columns:      12;
-$grid-gutter-width: 32px;
-
-// Grid breakpoints
-//
-// Define the minimum dimensions at which your layout will change,
-// adapting to different screen sizes, for use in media queries.
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
-);
-
-// Grid containers
-//
-// Define the maximum width of `.container` for different screen sizes.
-$container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px
-);
-
-
-
-
-
-// ==========================================================================
 // Base Imports
 // ==========================================================================
 
-
+// Vendor
 @import 'normalize';
 
+@import 'settings';
 @import 'functions';
 @import 'mixins';
 @import 'base';
@@ -62,7 +29,9 @@ $container-max-widths: (
 // ==========================================================================
 
 
-.main {
+.main {}
+
+.container {
   @include grid-container;
 
   // For each breakpoint, define the maximum width of the container in a media query
@@ -77,6 +46,50 @@ $container-max-widths: (
 
 
 
+//
+// Site Header
+// ==========================================================================
+
+
+.site-header {
+  background-color: $black;
+}
+
+.site-header__inner {
+  @include grid-row;
+}
+
+.site-header__title {
+  @include grid-col-ready;
+  @include grid-col(9);
+
+  color: $burnt-gold;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.site-header__title__sub {
+  color: $radial-redemption;
+  font-size: 12px;
+  text-transform: none;
+}
+
+
+@include media-breakpoint-up(md) {
+  .site-header__title {
+    @include grid-col(4);
+  }
+}
+
+
+
+
+
+
+
+
 // ==========================================================================
 // Content
 // ==========================================================================
@@ -84,22 +97,12 @@ $container-max-widths: (
 
 .content {
   @include grid-row;
+
+  margin-top: 16px;
 }
 
-.explainer,
 .reptoidal {
   @include grid-col-ready;
-}
-
-.explainer {
-  h1 {
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-}
-
-.reptoidal {
-  order: -1;
 }
 
 .reptoidal__img {
@@ -128,7 +131,7 @@ $container-max-widths: (
 
 
 // ==========================================================================
-// Footer
+// Site Footer
 // ==========================================================================
 
 

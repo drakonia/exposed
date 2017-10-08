@@ -3,6 +3,41 @@
 // ==========================================================================
 
 
+/// Clamp `$number` between `$min` and `$max`
+///
+/// @link https://css-tricks.com/snippets/sass/clamping-number/
+///
+/// @param {Number} $number - Number to clamp
+/// @param {Number} $min - Minimum value
+/// @param {Number} $max - Maximum value
+/// @return {Number}
+@function clamp($number, $min, $max) {
+  @return min(max($number, $min), $max);
+}
+
+
+/// Get value from nested map
+///
+/// @author Hugo Giraudel
+///
+/// @param  {map}     $map
+/// @param  {arglist} $keys key chain
+/// @return {mixed}             Desired value
+@function map-fetch($map, $keys...) {
+  @each $key in $keys {
+    @if map-has-key($map, $key) {
+      $map: map-get($map, $key);
+    } @else {
+      @error 'ERROR: Specified index `#{$key}` does not exist in the map `#{$map}`!';
+    }
+  }
+  @return $map;
+}
+
+
+
+
+
 // ==========================================================================
 // Grid
 // ==========================================================================

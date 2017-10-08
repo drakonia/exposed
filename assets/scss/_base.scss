@@ -47,9 +47,10 @@ textarea {
 }
 
 body {
-  background-color: hsl(33, 16%, 11%);
-  color: hsl(0, 100%, 50%);
+  background-color: $blown-course;
+  color: $radial-redemption;
   font-family: 'Source Code Pro', monospace;
+  margin: 0;
 }
 
 .wrapper {
