@@ -1,30 +1,113 @@
+/*!*
+ * Drakonia... Exposed!
+ *
+ * (c) 2017 Thee Drakonia Specialists
+ */
+
+
 /* stylelint-disable selector-max-type */
+
+
+// ==========================================================================
+// Settings
+// ==========================================================================
+
+
+$grid-columns:      12;
+$grid-gutter-width: 32px;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+
+
+
+
+// ==========================================================================
+// Base Imports
+// ==========================================================================
+
 
 @import 'normalize';
 
+@import 'functions';
+@import 'mixins';
 @import 'base';
 
 
+
+
+
+// ==========================================================================
+// Grid + Layout
+// ==========================================================================
+
+
 .main {
-  padding: 30px 0;
+  @include grid-container;
+
+  // For each breakpoint, define the maximum width of the container in a media query
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+      max-width: $container-max-width;
+    }
+  }
 }
 
-.explainer h1 {
-  text-transform: uppercase;
-  font-weight: 600;
+
+
+
+
+// ==========================================================================
+// Content
+// ==========================================================================
+
+
+.content {
+  @include grid-row;
 }
 
-.img-rept {
+.explainer,
+.reptoidal {
+  @include grid-col-ready;
+}
+
+.explainer {
+  h1 {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.reptoidal {
+  order: -1;
+}
+
+.reptoidal__img {
   width: 600px;
-  margin-top: 25px;
 }
 
-.footer-container footer {
-  color: #ffffff;
-  padding: 20px 0;
-}
 
-@media only screen and (min-width: 641px) {
+@include media-breakpoint-up(md) {
   .explainer h1 {
     font-size: 4.5rem;
     line-height: 1;
@@ -33,9 +116,24 @@
 }
 
 
-@media only screen and (min-width: 1140px) {
-  .wrapper {
-    width: 1026px; /* 1140px - 10% for margins */
-    margin: 0 auto;
+@include media-breakpoint-up(lg) {
+  .explainer,
+  .reptoidal {
+    @include grid-col(6);
   }
+}
+
+
+
+
+
+// ==========================================================================
+// Footer
+// ==========================================================================
+
+
+
+.footer-container footer {
+  color: #ffffff;
+  padding: 20px 0;
 }
