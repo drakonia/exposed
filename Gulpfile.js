@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 const gulp = require('gulp');
+const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const stylelint = require('gulp-stylelint');
 const cleanCSS = require('gulp-clean-css');
@@ -47,7 +48,10 @@ gulp.task('sass', () => {
   return gulp
     .src(config.sassFiles)
     .pipe(sourcemaps.init())
-    .pipe(sass(config.sassOptions).on('error', sass.logError))
+    .pipe(sass(config.sassOptions).on('error', function(err) {
+      notify().write(err);
+      this.emit('end');
+    }))
     .pipe(sourcemaps.write())
     .pipe(postcss(config.postcss))
     .pipe(gulp.dest(config.sassDest))
