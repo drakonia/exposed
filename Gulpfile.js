@@ -1,23 +1,31 @@
 /* eslint-env node */
 
 const gulp = require('gulp');
-const del = require('del');
 const sass = require('gulp-sass');
 const stylelint = require('gulp-stylelint');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const pxtorem = require('postcss-pxtorem');
 const eslint = require('gulp-eslint');
 const browser = require('browser-sync').create();
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const pump = require('pump');
 const dist = './drakonia_exposed/static';
 
 const config = {
   jsDest: dist + '/js',
   jsFiles: 'assets/js/**/*.js',
+  postcss: [
+    autoprefixer({
+      browsers: 'last 2 versions'
+    }),
+    pxtorem({
+      propList: ['*']
+    })
+  ],
   sassDest: dist + '/css',
   sassFiles: './assets/scss/**/*.scss',
   sassOptions: {
@@ -35,19 +43,13 @@ gulp.task('browser-sync', ['sass'], () => {
   });
 });
 
-gulp.task('dist-clean', () => {
-  return del([dist]).then(paths => {
-    console.log('Deleted files and folders:\n', paths.join('\n'));
-  });
-});
-
-gulp.task('sass', ['dist-clean'], () => {
+gulp.task('sass', () => {
   return gulp
     .src(config.sassFiles)
     .pipe(sourcemaps.init())
     .pipe(sass(config.sassOptions).on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(autoprefixer())
+    .pipe(postcss(config.postcss))
     .pipe(gulp.dest(config.sassDest))
     .pipe(browser.reload({stream: true}));
 });
@@ -84,7 +86,7 @@ gulp.task('js-lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('js-concat', ['dist-clean'], () => {
+gulp.task('js-concat', () => {
   return gulp.src(config.jsFiles)
     .pipe(sourcemaps.init())
     .pipe(babel())
@@ -108,12 +110,11 @@ gulp.task('watch', ['browser-sync', 'js-concat', 'sass'], () => {
 });
 
 gulp.task('dev', [
-  'dist-clean', 'js-lint-nice', 'js-concat', 'sass', 'sass-lint'
+  'js-lint-nice', 'js-concat', 'sass', 'sass-lint'
 ]);
 
 // @TODO `js-compress` isn't working
 gulp.task('prod', [
-  'dist-clean',
   'js-lint', 'js-concat', 'js-compress',
   'sass', 'sass-lint', 'css-minify'
 ]);

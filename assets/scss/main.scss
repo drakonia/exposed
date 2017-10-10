@@ -59,6 +59,11 @@ body {
   margin: 0 5%;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 
 
@@ -149,4 +154,10 @@ nav {
     width: 1026px; /* 1140px - 10% for margins */
     margin: 0 auto;
   }
+}
+
+
+.img-rept {
+  width: 600px;
+  margin-top: 25px;
 }
