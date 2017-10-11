@@ -34,6 +34,9 @@
 }
 
 
+
+
+
 //
 // Grid
 // ==========================================================================
@@ -48,12 +51,14 @@
   padding-left: ($grid-gutter-width / 2);
 }
 
+
 @mixin grid-row {
   display: flex;
   flex-wrap: wrap;
   margin-right: ($grid-gutter-width / -2);
   margin-left: ($grid-gutter-width / -2);
 }
+
 
 @mixin grid-col-ready {
   position: relative;
@@ -66,6 +71,7 @@
   padding-left: ($grid-gutter-width / 2);
 }
 
+
 @mixin grid-col($size, $columns: $grid-columns) {
   flex: 0 0 percentage($size / $columns);
   // Add a `max-width` to ensure content within each column does not blow out
@@ -74,6 +80,14 @@
   max-width: percentage($size / $columns);
 }
 
+
 @mixin grid-col-offset($size, $columns: $grid-columns) {
   margin-left: percentage($size / $columns);
+}
+
+
+@mixin grid-col-auto {
+  flex: 0 0 auto;
+  max-width: none; // Reset earlier grid tiers
+  width: auto;
 }
