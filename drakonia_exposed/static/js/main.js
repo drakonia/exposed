@@ -1,8 +1,1 @@
-'use strict';
-
-var thingy = function thingy() {
-  return 'heyaaaa';
-};
-console.log(thingy());
-// thingy();
-//# sourceMappingURL=main.js.map
+"use strict";jQuery(document).ready(function(t){var e=t(".js-site-nav"),s=t(".js-site-nav-btn");s.click(function(t){t.preventDefault(),e.toggleClass("is-active"),s.toggleClass("is-active")})});
