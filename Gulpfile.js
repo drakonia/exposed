@@ -24,7 +24,8 @@ const config = {
       browsers: 'last 2 versions'
     }),
     pxtorem({
-      propList: ['*']
+      propList: ['*'],
+      rootValue: 12
     })
   ],
   sassDest: dist + '/css',
