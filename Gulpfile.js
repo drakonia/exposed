@@ -38,6 +38,7 @@ const config = {
 
 gulp.task('browser-sync', ['sass'], () => {
   browser.init({
+    notify: false,
     open: false,
     proxy: 'localhost:5000',
     ui: false
