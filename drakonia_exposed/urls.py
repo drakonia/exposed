@@ -16,14 +16,33 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from . import views
+from .views import index
 
 admin.autodiscover() #not sure what this is
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index')
+    #url(r'^$', views.index, name='index')
+    url(r'^$', index),
+    url(r'^us/$',index),
+    url(r'^them/$',index),
+    url(r'^radio/$',index)
 ]
+"""
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+	url(r'^$',home),
+	url(r'^bounties/$',home),
+	url(r'^messages/$',home),
+	url(r'^events/$',home),
+	url(r'^myhits/$',home),
+	url(r'^watchlist/$',home),
+	url(r'^roguesgallery/$',home),
+	url(r'^NAME2/$',views.NAME2),
+	url(r'^'+profiles_re+'/$', views.NAME2),
+	url(r'^emoji/',include('emoji.urls'))
+	] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+"""
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
