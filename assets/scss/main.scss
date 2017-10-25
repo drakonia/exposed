@@ -57,6 +57,7 @@
 
 .site-header {
   background-color: $black;
+  border-bottom: 1px solid $burnt-gold;
 }
 
 .site-header__inner {
@@ -173,9 +174,12 @@
 
 
 .content {
+  @include grid-col-ready;
+
   color: $white;
   margin-bottom: 64px;
   margin-top: 16px;
+  order: 2;
 }
 
 .content__header,
@@ -233,6 +237,45 @@
   .content__body {
     column-count: 3;
     column-gap: $grid-gutter-width;
+  }
+}
+
+
+
+
+
+//
+// RFD Player Drawer
+// ==========================================================================
+
+
+.player {
+  @include grid-col-ready;
+
+  background-color: $black;
+}
+
+.player__inner {
+  @include grid-row;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+
+.player--bar {
+  .player__inner {
+    height: 75px;
+  }
+}
+
+
+.player--drawer {
+  display: none;
+
+
+  .player__inner {
+    height: 75px;
   }
 }
 
