@@ -120,6 +120,7 @@
 
 
 .site-nav {
+  font-size: 16px;
   transition: all 300ms ease;
   max-height: 0;
   overflow: hidden;
@@ -131,7 +132,6 @@
 }
 
 .site-nav__inner {
-  // display: inline;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -173,33 +173,65 @@
 
 
 .content {
-  @include grid-row;
-
+  color: $white;
   margin-top: 16px;
 }
 
-.reptoidal {
-  @include grid-col-ready;
+.content__header,
+.content__body {
+  // @include grid-row;
 }
 
-.reptoidal__img {
-  width: 600px;
+.content__title {
+  margin: 0;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.content__nav {
+  font-size: 14px;
+}
+
+.content__nav__item {
+  text-transform: lowercase;
+
+  a {
+    color: $white;
+  }
+}
+
+.content__nav__inner {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content__nav__item {
+  display: inline-block;
+
+  &:not(:last-child)::after {
+    content: '//';
+  }
+}
+
+.content__body {
+  margin-top: 16px;
 }
 
 
 @include media-breakpoint-up(md) {
-  .explainer h1 {
-    font-size: 4.5rem;
-    line-height: 1;
-    letter-spacing: 0.02em;
-  }
+
 }
 
 
 @include media-breakpoint-up(lg) {
-  .explainer,
-  .reptoidal {
-    @include grid-col(6);
+  .content {
+    margin-top: 32px;
+  }
+
+  .content__body {
+    column-count: 3;
+    column-gap: $grid-gutter-width;
   }
 }
 
