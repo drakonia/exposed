@@ -181,12 +181,6 @@
   color: $white;
   margin-bottom: 64px;
   margin-top: 16px;
-  order: 2;
-}
-
-.content__header,
-.content__body {
-  // @include grid-row;
 }
 
 .content__title {
@@ -252,29 +246,38 @@
 
 
 .player {
-  @include grid-col-ready;
-
   background-color: $black;
 }
 
-.player__inner {
-  @include grid-row;
+.player__container {
 
+}
+
+.player__inner {
   padding-top: 16px;
   padding-bottom: 16px;
 }
 
 
-.player--bar {
-  .player__inner {
-    height: 75px;
+.player--small {
+  text-align: left;
+
+  .player__title {
+    @include h-size(6);
+
+    margin-bottom: 8px;
+  }
+
+  .player__subtitle {
+    display: block;
+    font-weight: normal;
+    text-transform: lowercase;
   }
 }
 
 
-.player--drawer {
+.player--large {
   display: none;
-
 
   .player__inner {
     height: 75px;
