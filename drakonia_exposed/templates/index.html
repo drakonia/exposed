@@ -15,25 +15,22 @@
                         Drakonia… Exposed!<br />
                         <small class="site-header__title__sub">the truth is in the air</small>
                     </h1>
-
                     <a class="site-header__menu-btn js-site-nav-btn" href="#">
                         <span>MENU</span>
                     </a>
-
                     <nav class="site-nav site-header__menu js-site-nav">
                         <ul class="site-nav__inner">
                             <li class="site-nav__item js-site-nav-item">
-                                <a href="/us">us</a>
+                                <a id="us">us</a>
                             </li>
                             <li class="site-nav__item js-site-nav-item">
-                                <a href="/them">them</a>
+                                <a id="them">them</a>
                             </li>
                             <li class="site-nav__item js-site-nav-item">
-                                <a href="/radio">radio</a>
+                                <a id="radio">radio</a>
                             </li>
                         </ul>
                     </nav>
-
                 </div>
             </div>
         </header>
@@ -42,24 +39,65 @@
             <div class="row">
 
                 <article class="content">
-                    {% include "content.html" %}
+                <p id="CONTENT">
+                    <!-- this is where the js ajax dumps the html from serverside to client-->
+                </p> 
                 </article>
 
                 <aside class="player--bar player">
                     {% include "bar_player.html" %}
                 </aside>
-
             </div>
-
         </main>
 
         <aside class="player--drawer player">
             {% include "drawer_player.html" %}
         </aside>
 
-
-
         <audio class="js-whispers" type="audio/wav" autoplay></audio>
+
+        <script>
+            if ('{{path}}' == '/') {
+                var cSwitch = "/us/";
+                }
+            else {
+                var cSwitch = "{{path}}";
+                };
+            function loadContent() {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("CONTENT").innerHTML =
+                  this.responseText;
+                }
+              };
+              if (cSwitch == "/us/"){
+                xhttp.open("GET", '{% static "html/us.html" %}', true);
+                xhttp.send();
+                };
+              if (cSwitch == "/them/"){
+                xhttp.open("GET", '{% static "html/them.html" %}', true);
+                xhttp.send();
+                };
+              if (cSwitch == "/radio/"){
+                xhttp.open("GET", '{% static "html/radio.html" %}', true);
+                xhttp.send();
+                };
+            }
+            loadContent();
+            $( "#us" ).click(function() {
+              cSwitch = "/us/";
+              loadContent();
+                });
+            $("#them").click(function(){
+                cSwitch = "/them/";
+                loadContent();
+                });
+            $( "#radio").click(function() {
+                cSwitch = "/radio/";
+                loadContent();
+                });
+        </script>
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

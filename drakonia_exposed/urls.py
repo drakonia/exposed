@@ -28,21 +28,6 @@ urlpatterns = [
     url(r'^them/$',index),
     url(r'^radio/$',index)
 ]
-"""
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-	url(r'^$',home),
-	url(r'^bounties/$',home),
-	url(r'^messages/$',home),
-	url(r'^events/$',home),
-	url(r'^myhits/$',home),
-	url(r'^watchlist/$',home),
-	url(r'^roguesgallery/$',home),
-	url(r'^NAME2/$',views.NAME2),
-	url(r'^'+profiles_re+'/$', views.NAME2),
-	url(r'^emoji/',include('emoji.urls'))
-	] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-"""
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 

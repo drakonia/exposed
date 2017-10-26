@@ -7,8 +7,9 @@ import os.path
 
 def index(request):
     t = get_template('index.html')
-    c = Context({'path':request.path
+    c = Context({'path':request.path,
                 })
     html = t.render(c)
     return HttpResponse(html)
 #	return render(request, 'index.html')
+
