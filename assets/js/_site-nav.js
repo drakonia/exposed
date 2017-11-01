@@ -1,4 +1,6 @@
-/* global Site */
+//
+// Nav
+//
 
 Site.Nav = {
   init: function() {

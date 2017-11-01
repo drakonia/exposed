@@ -2,10 +2,6 @@
 // Templates
 //
 
-
-/* global Site */
-
-
 Site.Template = {
   load: function(path) {
     const name = this.getName(path);
