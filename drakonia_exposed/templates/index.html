@@ -20,14 +20,14 @@
                     </a>
                     <nav class="site-nav site-header__menu js-site-nav">
                         <ul class="site-nav__inner">
-                            <li class="site-nav__item js-site-nav-item">
-                                <a id="us">us</a>
+                            <li class="site-nav__item">
+                                <a href="/us/" class="site-nav__link js-site-nav-link">us</a>
                             </li>
-                            <li class="site-nav__item js-site-nav-item">
-                                <a id="them">them</a>
+                            <li class="site-nav__item">
+                                <a href="/them/" class="site-nav__link js-site-nav-link">them</a>
                             </li>
-                            <li class="site-nav__item js-site-nav-item">
-                                <a id="radio">radio</a>
+                            <li class="site-nav__item">
+                                <a href="/radio/" class="site-nav__link js-site-nav-link">radio</a>
                             </li>
                         </ul>
                     </nav>
@@ -42,11 +42,7 @@
         <main class="main container">
             <div class="row">
 
-                <article class="content">
-                <p id="CONTENT">
-                    <!-- this is where the js ajax dumps the html from serverside to client-->
-                </p>
-                </article>
+                <article class="content js-content"></article>
 
             </div>
         </main>
@@ -58,49 +54,6 @@
         <audio class="js-whispers" type="audio/wav" autoplay></audio>
 
         <script>
-            if ('{{path}}' == '/') {
-                var cSwitch = "/us/";
-                }
-            else {
-                var cSwitch = "{{path}}";
-                };
-            function loadContent() {
-              var xhttp = new XMLHttpRequest();
-              xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  document.getElementById("CONTENT").innerHTML =
-                  this.responseText;
-                }
-              };
-              if (cSwitch == "/us/"){
-                xhttp.open("GET", '{% static "html/us.html" %}', true);
-                xhttp.send();
-                };
-              if (cSwitch == "/them/"){
-                xhttp.open("GET", '{% static "html/them.html" %}', true);
-                xhttp.send();
-                };
-              if (cSwitch == "/radio/"){
-                xhttp.open("GET", '{% static "html/radio.html" %}', true);
-                xhttp.send();
-                };
-            }
-            loadContent();
-            $( "#us" ).click(function() {
-              cSwitch = "/us/";
-              loadContent();
-                });
-            $("#them").click(function(){
-                cSwitch = "/them/";
-                loadContent();
-                });
-            $( "#radio").click(function() {
-                cSwitch = "/radio/";
-                loadContent();
-                });
-        </script>
-
-        <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -108,6 +61,12 @@
 
             ga('create', 'UA-106808514-1', 'auto');
             ga('send', 'pageview');
+        </script>
+
+        <script>
+            var Site = {
+                path: '{{ path }}'
+            };
         </script>
 
         <script src="{% static 'js/main.js' %}"></script>

@@ -1,18 +1,23 @@
-jQuery(document).ready(function($) {
+/* global Site */
 
-  let $menu = $('.js-site-nav');
-  let $menuBtn = $('.js-site-nav-btn');
-  // let $menuItem = $('.js-site-nav-item');
+Site.Nav = {
+  init: function() {
+    const $menu = $('.js-site-nav');
+    const $menuBtn = $('.js-site-nav-btn');
+    const $menuLink = $('.js-site-nav-link');
 
-  $menuBtn.click(function(e) {
-    e.preventDefault();
-    $menu.toggleClass('is-active');
-    $menuBtn.toggleClass('is-active');
-  });
+    // Toggle the menu
+    $menuBtn.on('click', function(e) {
+      $menu.toggleClass('is-active');
+      $menuBtn.toggleClass('is-active');
+      e.preventDefault();
+    });
 
-  // $menuItem.click(function(e) {
-  //   e.preventDefault();
-  //   $(this).toggleClass('is-active');
-  // });
-
-});
+    // Change the view
+    $menuLink.on('click', function(e) {
+      const dest = $(this).attr('href');
+      Site.Template.load(dest);
+      e.preventDefault();
+    });
+  }
+};

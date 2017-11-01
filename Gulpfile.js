@@ -18,7 +18,11 @@ const dist = './drakonia_exposed/static';
 
 const config = {
   jsDest: dist + '/js',
-  jsFiles: 'assets/js/**/*.js',
+  jsFiles: [
+    'assets/js/_utils.js',
+    'assets/js/**/*.js',
+    'assets/js/_main.js'
+  ],
   postcss: [
     autoprefixer({
       browsers: 'last 2 versions'
