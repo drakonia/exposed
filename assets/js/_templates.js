@@ -3,20 +3,16 @@
 //
 
 Site.Template = {
-  load: function(path) {
-    const name = this.getName(path);
+  load: function(path, targetSelector) {
+    const $target = $(targetSelector);
+    path = (path == '/') ? '/us' : path.trimTrailingSlashes();
 
     $.ajax({
-      url: `/static/html/${name}.html`,
+      url: `/static/html/${path}.html`,
       success: function(resp) {
-        $('.js-content').html(resp);
-        Site.path = path;
+        $target.html(resp);
+        Site.path = path + '/';
       }
     });
-  },
-
-  getName: function(path) {
-    // Load the "Us" module by default
-    return (path == '/') ? 'us' : path.replaceAll('/');
   }
 };
