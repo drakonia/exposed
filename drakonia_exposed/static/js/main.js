@@ -1,1 +1,21 @@
-"use strict";jQuery(document).ready(function(t){var e=t(".js-site-nav"),s=t(".js-site-nav-btn");s.click(function(t){t.preventDefault(),e.toggleClass("is-active"),s.toggleClass("is-active")})});
+"use strict";
+'use strict';
+
+jQuery(document).ready(function ($) {
+
+  var $menu = $('.js-site-nav');
+  var $menuBtn = $('.js-site-nav-btn');
+  // let $menuItem = $('.js-site-nav-item');
+
+  $menuBtn.click(function (e) {
+    e.preventDefault();
+    $menu.toggleClass('is-active');
+    $menuBtn.toggleClass('is-active');
+  });
+
+  // $menuItem.click(function(e) {
+  //   e.preventDefault();
+  //   $(this).toggleClass('is-active');
+  // });
+});
+//# sourceMappingURL=main.js.map
