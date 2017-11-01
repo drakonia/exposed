@@ -16,13 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from . import views
+from .views import index
 
 admin.autodiscover() #not sure what this is
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index')
+    #url(r'^$', views.index, name='index')
+    url(r'^$', index),
+    url(r'^us/$',index),
+    url(r'^them/$',index),
+    url(r'^radio/$',index)
 ]
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

@@ -4,18 +4,7 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Drakonia… Exposed!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+        {% include "head.html" %}
     </head>
     <body>
 
@@ -26,85 +15,90 @@
                         Drakonia… Exposed!<br />
                         <small class="site-header__title__sub">the truth is in the air</small>
                     </h1>
-
                     <a class="site-header__menu-btn js-site-nav-btn" href="#">
                         <span>MENU</span>
                     </a>
-
                     <nav class="site-nav site-header__menu js-site-nav">
                         <ul class="site-nav__inner">
                             <li class="site-nav__item js-site-nav-item">
-                                <a href="/about">about</a>
+                                <a id="us">us</a>
                             </li>
                             <li class="site-nav__item js-site-nav-item">
-                                <a href="/radio">radio</a>
+                                <a id="them">them</a>
+                            </li>
+                            <li class="site-nav__item js-site-nav-item">
+                                <a id="radio">radio</a>
                             </li>
                         </ul>
                     </nav>
-
                 </div>
             </div>
         </header>
 
         <aside class="player--small player">
-            <div class="player__container container">
-                <div class="player__inner">
-                    <h1 class="player__title">
-                        <small class="player__subtitle">Now Playing</small>
-                        EPISODE NAME
-                    </h1>
-                    <div class="player__controls">
-                        <span class="player__play-pause">[PLAY]</span>
-                        <span class="player__stop">[STOP]</span>
-                    </div>
-                </div>
-            </div>
+            {% include "player-bar.html" %}
         </aside>
 
         <main class="main container">
             <div class="row">
 
                 <article class="content">
-
-                    <header class="content__header">
-                        <h1 class="content__title">Home</h1>
-                        <nav class="content__nav">
-                            <ul class="content__nav__inner">
-                                <li class="content__nav__item">
-                                    <a href="#">Section I</a>
-                                </li>
-                                <li class="content__nav__item">
-                                    <a href="#">Section II</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </header>
-
-                    <section class="content__body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit tempor per donec, viverra duis nulla nisl id non arcu curae placerat lectus, semper blandit eleifend mi vitae quis sociis turpis quam. Quisque rhoncus cras sollicitudin cubilia neque semper aliquam mauris, etiam odio lobortis laoreet vehicula libero eros, commodo montes maecenas ultrices taciti orci netus. Feugiat platea accumsan consequat cursus arcu dictum primis ut enim, lacinia hac tristique orci leo mi vel suspendisse eu ultricies, tincidunt dis mus turpis lectus montes morbi nostra. Porta ac in mus nullam hendrerit id etiam egestas, ut facilisi commodo vulputate lobortis iaculis dapibus urna, rhoncus accumsan pretium volutpat fames turpis lacinia. Nisl bibendum faucibus posuere phasellus cras nulla enim sodales, aliquet urna hendrerit curae montes diam penatibus, cubilia ad nunc tellus varius ridiculus taciti. Vivamus ornare leo penatibus sapien ligula lacus facilisi, vitae luctus tincidunt praesent suscipit magna vestibulum, nisl mattis pulvinar curae senectus nisi. Mattis ante suspendisse tempus dictumst magnis curae eu inceptos molestie metus, suscipit tristique vehicula sociosqu lacus leo velit magna sodales. Imperdiet metus in euismod suspendisse litora erat tempor condimentum aenean enim, tristique rhoncus conubia sodales arcu pulvinar convallis sociosqu senectus, ligula praesent diam odio leo neque himenaeos fermentum cubilia.</p> <p>Ad fusce sociis placerat metus dis ornare natoque duis, magnis volutpat massa et laoreet himenaeos turpis, consequat dictum class vivamus fermentum proin mattis.</p> <p>Curabitur sagittis morbi id scelerisque potenti maecenas sapien a, purus diam pretium massa faucibus taciti senectus, neque ut nisi metus justo phasellus ultrices. At sociis magna dictumst curabitur montes, metus platea primis class, arcu dapibus leo nibh.</p> <p>Integer mi sociis taciti sodales hac mauris duis ac porta nec pharetra, quisque condimentum cras magnis sed fusce tortor rutrum mollis penatibus, facilisis urna aenean eleifend phasellus facilisi tempor mus enim fames. Sagittis nullam vulputate hac venenatis praesent tempus fames iaculis, ultrices ultricies habitant phasellus torquent pretium tristique, aptent ad condimentum et mauris litora arcu. Senectus massa purus posuere leo donec sagittis ligula pulvinar justo velit, feugiat inceptos platea eros potenti eleifend vitae ullamcorper mollis nisi, tristique accumsan himenaeos arcu integer turpis dignissim volutpat lacus. Quam primis massa diam dignissim ut ridiculus nulla senectus, est himenaeos arcu montes per velit semper facilisis pretium, tempus eget ornare in at egestas inceptos. Senectus phasellus integer hendrerit nibh volutpat massa rhoncus molestie non potenti suspendisse aliquet, augue conubia torquent quis commodo nascetur velit lobortis eleifend tortor.</p> <p>Nunc convallis dictumst semper mus quis laoreet penatibus arcu, egestas pulvinar bibendum conubia tristique rhoncus. Mollis euismod fusce sociis viverra integer consequat facilisis mi, bibendum nullam turpis diam vulputate montes odio, arcu fermentum penatibus metus nostra rhoncus magna. Ut litora lectus odio blandit nulla class sagittis fames sociis, proin a primis lacinia libero mollis dignissim cursus, vestibulum ante integer luctus vel himenaeos aliquet sollicitudin. Mollis mi arcu velit nam ornare hac volutpat, donec habitasse leo mus faucibus quisque, risus facilisi dui vestibulum eleifend sociosqu fermentum, iaculis natoque inceptos lobortis magna.</p>
-
-                        <div class="reptoidal">
-                            <img src="/media/images/reptialn.jpg" class="reptoidal__img"></img>
-                        </div>
-                    </section>
-
+                <p id="CONTENT">
+                    <!-- this is where the js ajax dumps the html from serverside to client-->
+                </p>
                 </article>
 
             </div>
-
         </main>
 
         <aside class="player--large player">
-            <div class="player__container container">
-                <div class="player__inner">
-
-                </div>
-            </div>
+            {% include "player-large.html" %}
         </aside>
 
-
-
         <audio class="js-whispers" type="audio/wav" autoplay></audio>
+
+        <script>
+            if ('{{path}}' == '/') {
+                var cSwitch = "/us/";
+                }
+            else {
+                var cSwitch = "{{path}}";
+                };
+            function loadContent() {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("CONTENT").innerHTML =
+                  this.responseText;
+                }
+              };
+              if (cSwitch == "/us/"){
+                xhttp.open("GET", '{% static "html/us.html" %}', true);
+                xhttp.send();
+                };
+              if (cSwitch == "/them/"){
+                xhttp.open("GET", '{% static "html/them.html" %}', true);
+                xhttp.send();
+                };
+              if (cSwitch == "/radio/"){
+                xhttp.open("GET", '{% static "html/radio.html" %}', true);
+                xhttp.send();
+                };
+            }
+            loadContent();
+            $( "#us" ).click(function() {
+              cSwitch = "/us/";
+              loadContent();
+                });
+            $("#them").click(function(){
+                cSwitch = "/them/";
+                loadContent();
+                });
+            $( "#radio").click(function() {
+                cSwitch = "/radio/";
+                loadContent();
+                });
+        </script>
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
