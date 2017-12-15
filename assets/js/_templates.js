@@ -12,6 +12,8 @@ Site.Template = {
       success: function(resp) {
         $target.html(resp);
         Site.path = path + '/';
+        // Update address bar
+        history.pushState({path: path}, null, Site.path);
       }
     });
   }
