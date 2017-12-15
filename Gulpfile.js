@@ -14,7 +14,7 @@ const browser = require('browser-sync').create();
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const dist = './drakonia_exposed/static';
+const dist = './drakonia_exposed/static/dist';
 
 const config = {
   jsDest: dist + '/js',
@@ -124,7 +124,7 @@ gulp.task('dev', [
 ]);
 
 // @TODO `js-compress` isn't working
-gulp.task('prod', [
+gulp.task('build', [
   'js-lint', 'js-concat', 'js-compress',
   'sass', 'sass-lint', 'css-minify'
 ]);
