@@ -5,6 +5,8 @@ staticfiles
 node_modules
 db.sqlite3
 
-# @TODO this should be ignored but since we don't have anything building stuff
-# in between local and Heroku we gotta track static assets
-# **/static/dist
+# Compile assets upon build
+**/static/dist
+
+# Use yarn.lock instead
+package-lock.json
