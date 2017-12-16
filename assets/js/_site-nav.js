@@ -4,30 +4,66 @@
 
 Site.Nav = {
   init: function() {
-    const $menu = $('.js-site-nav');
     const $menuBtn = $('.js-site-nav-btn');
-    const $menuLink = $('.js-site-nav-link');
-    const $content = $('.js-content');
+
+    this.setURLParts(Site.path);
+    this.loadTemplate(Site.path, '.js-content');
+
+    if('us' == Site.urlParts[0])
 
     // Toggle the menu
     $menuBtn.on('click', function(e) {
-      $menu.toggleClass('is-active');
+      $('.js-site-nav').toggleClass('is-active');
       $menuBtn.toggleClass('is-active');
       e.preventDefault();
     });
 
-    // Change the view
-    $menuLink.on('click', function(e) {
+    // Handle home link
+    $('.js-home-link').on('click', function(e) {
       const dest = $(this).attr('href');
-      Site.Template.load(dest, '.js-content');
+      Site.Nav.loadTemplate(dest, '.js-content');
+      e.preventDefault();
+    });
+
+    // Change the view
+    $('.js-site-nav-link').on('click', function(e) {
+      const dest = $(this).attr('href');
+      Site.Nav.loadTemplate(dest, '.js-content');
       e.preventDefault();
     });
 
     // Change the content section
-    $content.on('click', '.js-content-nav-link', function(e) {
+    $('.js-content').on('click', '.js-content-nav-link', function(e) {
       const dest = $(this).attr('href');
-      Site.Template.load(dest, '.js-content-body');
+      Site.Nav.loadTemplate(dest, '.js-content-body');
       e.preventDefault();
+    });
+  },
+
+  preparePath: function(path) {
+    return ('/' == path) ? 'home' : path.trimSlashes();
+  },
+
+  setURLParts: function(path) {
+    Site.urlParts = path.trimSlashes().split('/');
+    // console.log(Site.urlParts);
+  },
+
+  loadTemplate: function(path, targetSelector) {
+    const $target = $(targetSelector);
+    path = this.preparePath(path);
+    // console.log(path);
+
+    $.ajax({
+      url: `/static/html/${path}.html`,
+      success: function(resp) {
+        $target.html(resp);
+        Site.Nav.setURLParts(path);
+        if ('home' == path) { return; }
+        Site.path = '/' + path + '/';
+        // Update address bar
+        history.pushState({path: path}, null, Site.path);
+      }
     });
   }
 };

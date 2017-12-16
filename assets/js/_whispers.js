@@ -6,8 +6,8 @@
 Site.Whispers = {
   init: function() {
     setTimeout(function() {
-      let whisperIndex = Math.floor(Math.random() * this.whispers.length);
-      $('.js-whispers').attr('src', this.whispers[whisperIndex]);
+      let whisperIndex = Math.floor(Math.random() * Site.Whispers.whispers.length);
+      $('.js-whispers').attr('src', Site.Whispers.whispers[whisperIndex]);
     }, 45000 + Math.floor(Math.random() * 10000));
   },
 

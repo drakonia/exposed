@@ -15,10 +15,10 @@ String.prototype.replaceAll = function(search, replacement = '') {
 };
 
 /**
- * Remove one or more trailing slashes
+ * Removes a single leading slash and one or more trailing slashes
  *
  * @return {String}
  */
-String.prototype.trimTrailingSlashes = function() {
-  return this.replace(/\/+$/, '');
+String.prototype.trimSlashes = function() {
+  return this.replace(/^\/|\/+$/g, '');
 };
