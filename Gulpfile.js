@@ -41,15 +41,6 @@ const config = {
   }
 };
 
-gulp.task('browser-sync', ['sass'], () => {
-  browser.init({
-    notify: false,
-    open: false,
-    proxy: 'localhost:5000',
-    ui: false
-  });
-});
-
 gulp.task('sass', () => {
   return gulp
     .src(config.sassFiles)
@@ -75,12 +66,21 @@ gulp.task('sass-lint', () => {
     }));
 });
 
-gulp.task('css-minify', ['sass'], () => {
+gulp.task('browser-sync', gulp.series('sass', () => {
+  browser.init({
+    notify: false,
+    open: false,
+    proxy: 'localhost:5000',
+    ui: false
+  });
+}));
+
+gulp.task('css-minify', gulp.series('sass', () => {
   return gulp
     .src(config.sassDest + '/*.css')
     .pipe(cleanCSS())
     .pipe(gulp.dest(config.sassDest));
-});
+}));
 
 gulp.task('js-lint-nice', () => {
   return gulp.src(config.jsFiles)
@@ -106,27 +106,30 @@ gulp.task('js-concat', () => {
     .pipe(browser.reload({stream: true}));
 });
 
-gulp.task('js-compress', ['js-concat'], () => {
+gulp.task('js-compress', gulp.series('js-concat', () => {
   return gulp.src(config.jsDest + '/*.js')
     .pipe(uglify())
     .pipe(gulp.dest(config.jsDest));
-});
+}));
 
-gulp.task('watch', ['browser-sync', 'js-concat', 'sass'], () => {
-  gulp.watch(config.sassFiles, ['sass']);
-  gulp.watch(config.jsFiles, ['js-concat']);
-  gulp.watch(['drakonia_exposed/templates/**/*.html'])
-    .on('change', browser.reload);
-});
+gulp.task('watch', gulp.series(
+  gulp.parallel('browser-sync', 'js-concat', 'sass'),
+  () => {
+    gulp.watch(config.sassFiles, ['sass']);
+    gulp.watch(config.jsFiles, ['js-concat']);
+    gulp.watch(['drakonia_exposed/templates/**/*.html'])
+      .on('change', browser.reload);
+  }
+));
 
-gulp.task('dev', [
+gulp.task('dev', gulp.series(
   'js-lint-nice', 'js-concat', 'sass', 'sass-lint'
-]);
+));
 
 // @TODO `js-compress` isn't working
-gulp.task('build', [
+gulp.task('build', gulp.series(
   'js-lint', 'js-concat', 'js-compress',
   'sass', 'sass-lint', 'css-minify'
-]);
+));
 
-gulp.task('default', ['dev']);
+gulp.task('default', gulp.series('dev'));

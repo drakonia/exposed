@@ -4,7 +4,7 @@
   "description": "The truth is in the air.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "gulp --prod"
+    "postinstall": "./node_modules/.bin/gulp build"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
     "eslint": "^4.7.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-concat": "^2.6.1",
@@ -36,14 +36,12 @@
     "gulp-stylelint": "^5.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
+    "handlebars": "^4.0.11",
     "normalize-scss": "^7.0.0",
     "postcss-pxtorem": "^4.0.1",
     "pump": "^1.0.2",
     "stylelint-scss": "^2.1.0",
     "stylelint-selector-bem-pattern": "^2.0.0",
     "yarn": "^1.0.2"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/.bin/gulp build"
   }
 }
