@@ -1,11 +1,13 @@
 env:
   browser: true
+  es6: true
   jquery: true
 extends: 'eslint:recommended'
 globals:
   Site: true
 parserOptions:
   ecmaVersion: 2016
+  sourceType: 'module'
 rules:
   indent:
     - error

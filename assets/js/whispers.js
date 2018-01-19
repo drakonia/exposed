@@ -3,11 +3,11 @@
 //
 
 
-Site.Whispers = {
+let Whispers = {
   init: function() {
     setTimeout(function() {
-      let whisperIndex = Math.floor(Math.random() * Site.Whispers.whispers.length);
-      $('.js-whispers').attr('src', Site.Whispers.whispers[whisperIndex]);
+      let i = Math.floor(Math.random() * Whispers.whispers.length);
+      $('.js-whispers').attr('src', Whispers.whispers[i]);
     }, 45000 + Math.floor(Math.random() * 10000));
   },
 
@@ -27,3 +27,5 @@ Site.Whispers = {
     '/media/voices/jingle_12a.wav'
   ]
 };
+
+export default Whispers;

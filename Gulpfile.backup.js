@@ -13,33 +13,14 @@ const eslint = require('gulp-eslint');
 const browser = require('browser-sync').create();
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
 const dist = './drakonia_exposed/static/dist';
 
-const config = {
-  jsDest: dist + '/js',
-  jsFiles: [
-    'assets/js/_utils.js',
-    'assets/js/**/*.js',
-    'assets/js/_main.js'
-  ],
-  postcss: [
-    autoprefixer({
-      browsers: 'last 2 versions'
-    }),
-    pxtorem({
-      propList: ['*'],
-      rootValue: 12
-    })
-  ],
-  sassDest: dist + '/css',
-  sassFiles: './assets/scss/**/*.scss',
-  sassOptions: {
-    includePaths: ['node_modules/normalize-scss/sass'],
-    errLogToConsole: true,
-    outputStyle: 'expanded'
-  }
-};
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackConfig = require('./webpack.config');
+const bundler = webpack(webpackConfig);
+
 
 gulp.task('sass', () => {
   return gulp
@@ -68,10 +49,17 @@ gulp.task('sass-lint', () => {
 
 gulp.task('browser-sync', gulp.series('sass', () => {
   browser.init({
+    files: ['dist/**/*'],
+    middleware: [
+      webpackDevMiddleware(bundler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: { colors: true }
+      })
+    ],
     notify: false,
     open: false,
     proxy: 'localhost:5000',
-    ui: false
+    ui: false,
   });
 }));
 
@@ -96,27 +84,11 @@ gulp.task('js-lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('js-concat', () => {
-  return gulp.src(config.jsFiles)
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat('main.js'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.jsDest))
-    .pipe(browser.reload({stream: true}));
-});
-
-gulp.task('js-compress', gulp.series('js-concat', () => {
-  return gulp.src(config.jsDest + '/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest(config.jsDest));
-}));
-
 gulp.task('watch', gulp.series(
-  gulp.parallel('browser-sync', 'js-concat', 'sass'),
-  () => {
-    gulp.watch(config.sassFiles, ['sass']);
-    gulp.watch(config.jsFiles, ['js-concat']);
+  gulp.parallel('browser-sync', 'bundle', 'sass'),
+  function() {
+    gulp.watch(config.sassFiles, gulp.series('sass'));
+    gulp.watch(config.jsFiles, gulp.series('js-concat'));
     gulp.watch(['drakonia_exposed/templates/**/*.html'])
       .on('change', browser.reload);
   }
