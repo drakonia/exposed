@@ -1,6 +1,5 @@
 /* eslint-env node */
 
-const pkg = require('./package.json');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -21,7 +20,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'drakonia_exposed/static/dist/js'),
-    publicPath: 'static/dist/js',
+    publicPath: '/static/dist/js',
     filename: '[name].bundle.js',
   },
   module: {
