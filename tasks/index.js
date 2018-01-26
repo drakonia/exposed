@@ -11,7 +11,10 @@ const dev = gulp.series(
   styles.minify
 );
 
-const build = gulp.series( scripts.bundle, scripts.lint );
+const build = gulp.series(
+  scripts.bundle, scripts.lint,
+  styles.compile, styles.lint, styles.minify
+);
 
 export { dev, build };
 

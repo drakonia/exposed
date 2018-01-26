@@ -7,10 +7,6 @@ import postcss from 'gulp-postcss';
 import stylelint from 'gulp-stylelint';
 import cleanCSS from 'gulp-clean-css';
 
-gulp.task('sass', () => {
-
-});
-
 function compile() {
   return gulp.src(config.sassFiles)
     .pipe(sourcemaps.init())
@@ -40,10 +36,3 @@ function minify() {
 }
 
 export { compile, lint, minify };
-
-//
-// gulp.task('css-minify', gulp.series('sass', () => {
-//
-// }));
-//
-// gulp.task('styles', gulp.series('sass', 'stylelint'))
