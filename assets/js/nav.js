@@ -13,7 +13,7 @@ let Nav = {
     }
   },
 
-  init: function() {
+  init() {
     const $menuBtn = $('.js-site-nav-btn');
 
     this.prepareURLParts(Site.path);
@@ -52,7 +52,7 @@ let Nav = {
     });
   },
 
-  preparePath: function(path) {
+  preparePath(path) {
     return ('/' == path) ? 'home' : path.trimSlashes();
   },
 
@@ -62,7 +62,7 @@ let Nav = {
    * @param  {string} path
    * @return {array}
    */
-  prepareURLParts: function(path) {
+  prepareURLParts(path) {
     return path.trimSlashes().split('/');
   },
 
@@ -74,7 +74,7 @@ let Nav = {
    * @param  {string} path
    * @param  {string} targetSelector
    */
-  loadTemplate: function(path, targetSelector) {
+  loadTemplate(path, targetSelector) {
     const $target = $(targetSelector);
     path = this.preparePath(path);
     // console.log(path);
@@ -89,7 +89,12 @@ let Nav = {
     });
   },
 
-  loadSubmenu: function(urlParts) {
+  /**
+   * Set up the sub menu
+   *
+   * @param  {array} urlParts
+   */
+  loadSubmenu(urlParts) {
     if (urlParts.length === 0) {
       return;
     }

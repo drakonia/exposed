@@ -2,9 +2,8 @@
 // Whispers
 //
 
-
-let Whispers = {
-  init: function() {
+export const Whispers = {
+  init() {
     setTimeout(function() {
       let i = Math.floor(Math.random() * Whispers.whispers.length);
       $('.js-whispers').attr('src', Whispers.whispers[i]);
@@ -27,5 +26,3 @@ let Whispers = {
     '/media/voices/jingle_12a.wav'
   ]
 };
-
-export default Whispers;
