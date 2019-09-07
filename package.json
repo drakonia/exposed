@@ -4,7 +4,9 @@
   "description": "The truth is in the air.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "gulp --prod"
+    "postinstall": "npm run build",
+    "dev": "NODE_ENV=development gulp --require babel-register --gulpfile tasks",
+    "build": "NODE_ENV=production gulp build --require babel-register --gulpfile tasks"
   },
   "repository": {
     "type": "git",
@@ -19,15 +21,18 @@
   "dependencies": {
     "autoprefixer": "^7.1.4",
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
     "eslint": "^4.7.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.0",
     "gulp-concat": "^2.6.1",
+    "gulp-environments": "^0.1.2",
     "gulp-eslint": "^4.0.0",
+    "gulp-notify": "^3.0.0",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
@@ -35,11 +40,19 @@
     "gulp-stylelint": "^5.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.6.0",
     "normalize-scss": "^7.0.0",
     "postcss-pxtorem": "^4.0.1",
     "pump": "^1.0.2",
     "stylelint-scss": "^2.1.0",
     "stylelint-selector-bem-pattern": "^2.0.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.3",
+    "webpack-module-hot-accept": "^1.0.5",
     "yarn": "^1.0.2"
+  },
+  "devDependencies": {
+    "webpack-hot-middleware": "^2.21.0"
   }
 }

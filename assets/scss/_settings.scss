@@ -1,0 +1,71 @@
+// ==========================================================================
+// Settings
+// ==========================================================================
+
+
+//
+// Colors
+// ==========================================================================
+
+$black: #000000;
+$white: #ffffff;
+
+$blown-course: hsl(33, 16%, 11%);
+$radial-redemption: hsl(0, 100%, 50%);
+$burnt-gold: hsl(52, 77%, 47%);
+
+
+
+//
+// Typography
+// ==========================================================================
+
+
+$h-sizes: (
+  1: 32px,
+  2: 24px,
+  3: 20px,
+  4: 28px,
+  5: 16px,
+  6: 14px
+);
+
+$h-size-reduction: (
+  1: 5px,
+  2: 5px,
+  3: 0,
+  4: 0,
+  5: 0,
+  6: 0
+);
+
+
+//
+// Grid
+// ==========================================================================
+
+
+$grid-columns:      12;
+$grid-gutter-width: 16px;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);

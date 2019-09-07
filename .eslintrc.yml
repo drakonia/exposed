@@ -1,16 +1,20 @@
 env:
   browser: true
-  shared-node-browser: true
+  es6: true
+  jquery: true
 extends: 'eslint:recommended'
+globals:
+  Site: true
 parserOptions:
   ecmaVersion: 2016
+  sourceType: 'module'
 rules:
   indent:
     - error
     - 2
     - SwitchCase: 1
   linebreak-style:
-    - error
+    - warn
     - unix
   max-len:
     - error
