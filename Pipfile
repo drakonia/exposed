@@ -6,7 +6,7 @@ python_version = "2.7"
 [packages]
 
 dj-database-url = "==0.4.1"
-django = "==1.11.1"
+django = "==1.11.28"
 gunicorn = "==19.6.0"
 psycopg2 = "==2.6.2"
 whitenoise = "==3.2"
